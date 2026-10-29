@@ -1,0 +1,16 @@
+# secrets - never commit the api login
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# editor and os
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
