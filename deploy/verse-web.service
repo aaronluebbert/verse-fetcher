@@ -1,0 +1,23 @@
+# systemd unit for the verse cards web app
+# edit User and the two paths if the project is not in /home/pi/verse-fetcher
+#   sudo cp deploy/verse-web.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now verse-web
+
+[Unit]
+Description=Verse cards web app
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/verse-fetcher
+ExecStart=/home/pi/verse-fetcher/.venv/bin/gunicorn -w 1 --threads 4 -t 150 -b 127.0.0.1:8000 app:app
+Restart=on-failure
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

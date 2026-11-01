@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#101216">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Verse cards">
+<title>Verse cards</title>
+<link rel="icon" href="/static/icon-180.png" type="image/png">
+<link rel="apple-touch-icon" href="/static/icon-180.png">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main>
+  <h1>Verse cards</h1>
+  <p class="lede">Photograph your outline or paste the references. You get dark cards you can save to Photos.</p>
+
+  <section aria-labelledby="photo-h">
+    <h2 id="photo-h">Photo</h2>
+    <label class="btn" for="photo">Choose or take a photo</label>
+    <input id="photo" type="file" accept="image/*" hidden>
+
+    <div id="cropper" hidden>
+      <p class="hint">Drag over the lines of references to read only that part. It is faster and more accurate.</p>
+      <canvas id="crop" aria-label="Your photo. Drag to select the references."></canvas>
+      <div class="row">
+        <button id="read" class="primary" type="button">Read the whole photo</button>
+        <button id="whole" class="quiet" type="button" hidden>Clear selection</button>
+      </div>
+    </div>
+
+    <p id="ocr-status" class="status" role="status"></p>
+    <div id="doubts" class="doubts" hidden>
+      <p id="doubts-title"></p>
+      <ul id="doubts-list"></ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="refs-h">
+    <h2 id="refs-h">References</h2>
+    <textarea id="refs" rows="9" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off"
+      aria-labelledby="refs-h"
+      placeholder="The sense of death: John 4:13; Isa. 55:2; Luke 15:14-16&#10;&#10;Put a heading before a colon, one group per block, a blank line between groups."></textarea>
+    <div class="row">
+      <button id="paste" class="quiet" type="button">Paste</button>
+      <button id="clear" class="quiet" type="button">Clear</button>
+    </div>
+    <p id="check-status" class="status" role="status"></p>
+    <ul id="check-warnings" class="warnings"></ul>
+    <button id="go" class="primary wide" type="button" disabled>Get verses</button>
+    <p id="fetch-status" class="status" role="status"></p>
+  </section>
+
+  <section id="results" aria-labelledby="cards-h" hidden>
+    <h2 id="cards-h">Cards</h2>
+    <div class="row">
+      <button id="save" class="primary" type="button">Save to Photos</button>
+      <button id="copy" class="quiet" type="button">Copy text</button>
+    </div>
+    <p id="save-note" class="status" role="status"></p>
+    <div id="cards"></div>
+  </section>
+
+  <noscript><p class="status" data-kind="error">This page needs JavaScript to draw the cards.</p></noscript>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
